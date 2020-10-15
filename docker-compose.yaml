@@ -1,0 +1,28 @@
+version: '2'
+services:
+  proxy:
+    image: nginx:1.13.0-alpine
+    container_name: proxy
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf
+
+  www1:
+    image: nginx:1.13.0-alpine
+    container_name: www1
+    ports:
+      - 8081:80
+    volumes:
+      - ./www1:/var/www/html/web
+      - ./nginx1.conf:/etc/nginx/nginx.conf
+
+  www2:
+    image: nginx:1.13.0-alpine
+    container_name: www2
+    ports:
+      - 8082:80
+    volumes:
+      - ./www2:/var/www/html/web
+      - ./nginx2.conf:/etc/nginx/nginx.conf
+
